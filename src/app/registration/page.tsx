@@ -19,6 +19,7 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthState
 import SuccessScreen from '../components/SuccessScreen';
 import AuthComponent from '../components/AuthComponent'; 
 import SearchableSchoolDropdown from '../components/SerchableSchoolDropdown';
+import Background from '../components/Background'
 
 interface IUserModel {
   firstname: string;
@@ -195,14 +196,12 @@ export default function Home() {
 
   return (
     <div className="video-container">
+      <Background />
     {submitted ? (
       <SuccessScreen />
     ) : (
       <>
-        <video autoPlay loop muted playsInline className="background-video">
-          <source src="/videos/background.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        
         <div className="content">
           {!user ? (
             <AuthComponent
@@ -460,44 +459,78 @@ export default function Home() {
                 <option value="Prefer not to say">Prefer not to say</option>
               </select>
             </div>
-            {/* MLH Code of Conduct */}
-            <div className="form-group">
-              <label>
-                <input
-                  type="checkbox"
-                  id="mlhCodeOfConduct"
-                  checked={data.mlhCodeOfConduct}
-                  onChange={handleCheckboxChange}
-                  required
-                />
-                I have read and agree to the MLH Code of Conduct. *
-              </label>
-            </div>
-            {/* MLH Privacy Policy */}
-            <div className="form-group">
-              <label>
-                <input
-                  type="checkbox"
-                  id="mlhPrivacyPolicy"
-                  checked={data.mlhPrivacyPolicy}
-                  onChange={handleCheckboxChange}
-                  required
-                />
-                I authorize you to share my application/registration information with Major League Hacking for event administration, ranking, and MLH administration in-line with the MLH Privacy Policy. *
-              </label>
-            </div>
-            {/* MLH Emails (Optional) */}
-            <div className="form-group">
-              <label>
-                <input
-                  type="checkbox"
-                  id="mlhEmails"
-                  checked={data.mlhEmails}
-                  onChange={handleCheckboxChange}
-                />
-                I authorize MLH to send me occasional emails about relevant events, career opportunities, and community announcements.
-              </label>
-            </div>
+          {/* MLH Code of Conduct */}
+<div className="form-group">
+  <label>
+    <input
+      type="checkbox"
+      id="mlhCodeOfConduct"
+      checked={data.mlhCodeOfConduct}
+      onChange={handleCheckboxChange}
+      required
+    />
+    {" "}I have read and agree to the{" "}
+    <a 
+      href="https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="text-blue-500 hover:text-blue-700 underline"
+    >
+      MLH Code of Conduct
+    </a>. *
+  </label>
+</div>
+
+{/* MLH Privacy Policy */}
+<div className="form-group">
+  <label>
+    <input
+      type="checkbox"
+      id="mlhPrivacyPolicy"
+      checked={data.mlhPrivacyPolicy}
+      onChange={handleCheckboxChange}
+      required
+    />
+    {" "}I authorize you to share my application/registration information with Major League Hacking for event administration, ranking, and MLH administration in-line with the{" "}
+    <a 
+      href="https://github.com/MLH/mlh-policies/blob/main/privacy-policy.md" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="text-blue-500 hover:text-blue-700 underline"
+    >
+      MLH Privacy Policy
+    </a>. I further agree to the terms of both the{" "}
+    <a 
+      href="https://github.com/MLH/mlh-policies/blob/main/contest-terms.md" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="text-blue-500 hover:text-blue-700 underline"
+    >
+      MLH Contest Terms and Conditions
+    </a>{" "}and the{" "}
+    <a 
+      href="https://github.com/MLH/mlh-policies/blob/main/privacy-policy.md" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="text-blue-500 hover:text-blue-700 underline"
+    >
+      MLH Privacy Policy
+    </a>. *
+  </label>
+</div>
+
+{/* MLH Emails (Optional) */}
+<div className="form-group">
+  <label>
+    <input
+      type="checkbox"
+      id="mlhEmails"
+      checked={data.mlhEmails}
+      onChange={handleCheckboxChange}
+    />
+    {" "}I authorize MLH to send me occasional emails about relevant events, career opportunities, and community announcements.
+  </label>
+</div>
             <button type="submit" className="submit-button" disabled={loading}>
               {loading ? "Submitting..." : "Submit"}
             </button>
